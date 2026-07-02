@@ -18,7 +18,7 @@ function App() {
           <Route index element={<ExtensionRegistration />} />
           <Route path="index.html" element={<ExtensionRegistration />} />
           {/* assetDetails namespace */}
-          <Route path="tab-panel" element={<TabPanel />} />
+          <Route path="extension-template" element={<TabPanel />} />
           {/* card namespace */}
           <Route path="card-action-modal" element={<CardActionModal />} />
           {/* selectionBar namespace */}

@@ -84,7 +84,7 @@ export default function TabPanel() {
   return (
     <Provider theme={defaultTheme}>
       <View padding="size-400">
-        <Heading level={3}>Asset Details Tab</Heading>
+        <Heading level={3}>Extension Template</Heading>
 
         <Divider marginY="size-200" />
 
@@ -108,7 +108,7 @@ export default function TabPanel() {
         <Button
           variant="accent"
           marginTop="size-300"
-          onPress={() => displayToast('positive', 'Action from Asset Details Tab!')}
+          onPress={() => displayToast('positive', 'Custom action!')}
         >
           Show Toast
         </Button>

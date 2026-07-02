@@ -41,11 +41,11 @@ function ExtensionRegistration() {
           getTabPanels() {
             return [
               {
-                'id': 'asset-details-tab',
-                'tooltip': 'Asset Details Tab',
+                'id': 'extension-template',
+                'tooltip': 'Extension Template',
                 'icon': 'Extension',
-                'title': 'Asset Details Tab',
-                'contentUrl': '/#tab-panel',
+                'title': 'Extension Template',
+                'contentUrl': '/#extension-template',
               },
             ];
           },
@@ -60,12 +60,14 @@ function ExtensionRegistration() {
             //   'collections' — collection tile on the Collections grid (3-dot menu)
             //   'share'       — asset card in a link-share view
             const { context } = actionContext || {};
-            const label = context === 'collections' ? 'Collection Action' : 'Card Action';
+            if (context !== 'assets' && context !== 'collection' && context !== 'collections') {
+              return [];
+            }
             return [
               {
-                'id': 'card-action',
-                'label': label,
-                'icon': 'Edit',
+                'id': 'customId',
+                'label': 'Custom label',
+                'icon': 'Form',
               },
             ];
           },
@@ -74,12 +76,14 @@ function ExtensionRegistration() {
             // buttonId:       the `id` from getActionButtons()
             // resourceId:     the asset or collection URN that was clicked
             // actionContext:  { context: 'assets' | 'collection' | 'collections' | 'share' }
-            await guestConnection.host.modal.openDialog({
-              title: 'Card Action',
-              contentUrl: `/#card-action-modal?resourceId=${encodeURIComponent(resourceId)}&resourceType=${encodeURIComponent(resourceType)}`,
-              type: 'modal',
-              size: 'M',
-            });
+            if (buttonId === 'customId') {
+              await guestConnection.host.modal.openDialog({
+                title: 'Custom Dialog',
+                contentUrl: `/#card-action-modal?resourceId=${encodeURIComponent(resourceId)}&resourceType=${encodeURIComponent(resourceType)}`,
+                type: 'modal',
+                size: 'M',
+              });
+            }
           },
         },
         // selectionBar namespace: add custom bulk action buttons to the selection bar.
@@ -89,20 +93,22 @@ function ExtensionRegistration() {
             // actionContext.resourceSelection.resources: [{ id }, ...]
             return [
               {
-                'id': 'bulk-action',
-                'label': 'Bulk Action',
-                'icon': 'Download',
+                'id': 'customId',
+                'label': 'Custom label',
+                'icon': 'Form',
               },
             ];
           },
           async onActionClick(buttonId, assetIds) {
-            const ids = encodeURIComponent(JSON.stringify(assetIds));
-            await guestConnection.host.modal.openDialog({
-              title: `Bulk Action (${assetIds.length} asset${assetIds.length !== 1 ? 's' : ''})`,
-              contentUrl: `/#selection-bar-modal?assetIds=${ids}`,
-              type: 'modal',
-              size: 'M',
-            });
+            if (buttonId === 'customId') {
+              const ids = encodeURIComponent(JSON.stringify(assetIds));
+              await guestConnection.host.modal.openDialog({
+                title: `Custom Dialog (${assetIds.length} asset${assetIds.length !== 1 ? 's' : ''} selected)`,
+                contentUrl: `/#selection-bar-modal?assetIds=${ids}`,
+                type: 'modal',
+                size: 'M',
+              });
+            }
           },
         },
       },

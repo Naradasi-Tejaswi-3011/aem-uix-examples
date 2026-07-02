@@ -74,24 +74,24 @@ https://experience.adobe.com/?devMode=true&features=ASSETS-66401&ext=https://loc
 
 **assetDetails (tab panel)**
 1. Click any asset to open the Asset Details Dialog
-2. Look for the **"Asset Details Tab"** tab in the side rail
+2. Look for the **"Extension Template"** tab in the side rail
 3. Click it — the panel should load and display the asset's URN
 
 **card (asset card action)**
 1. Hover over any asset card — click the **⋯** (three-dot) menu
-2. Click **"Card Action"**
+2. Click **"Custom label"**
 3. A modal should open showing the asset's Resource Type and Resource ID
 4. Click **Close** — the modal should dismiss
 
 **card (collection tile action)**
 1. Navigate to the Collections grid
 2. Hover over a collection tile — click its **⋯** menu
-3. Click **"Collection Action"** (the label changes based on `actionContext.context`)
+3. Click **"Custom label"** (same button configuration as the asset card action — `resourceType` in the modal tells you which kind of resource was clicked)
 4. A modal should open showing `resourceType: collection`
 
 **selectionBar (bulk action)**
 1. Select one or more assets (checkbox appears on hover)
-2. The selection bar appears at the bottom — click **"Bulk Action"**
+2. The selection bar appears at the bottom — click **"Custom label"**
 3. A modal should open listing the selected asset URNs
 4. Click **Close**
 

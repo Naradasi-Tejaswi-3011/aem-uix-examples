@@ -52,7 +52,7 @@ export default function SelectionBarModal() {
   return (
     <Provider theme={defaultTheme} height={'100vh'}>
       <View padding="size-400">
-        <Heading level={3}>Bulk Action</Heading>
+        <Heading level={3}>Custom Dialog — {payload.assetIds.length} asset{payload.assetIds.length !== 1 ? 's' : ''} selected</Heading>
         <Divider marginY="size-200" />
 
         <Text><strong>{payload.assetIds.length} asset{payload.assetIds.length !== 1 ? 's' : ''} selected:</strong></Text>
