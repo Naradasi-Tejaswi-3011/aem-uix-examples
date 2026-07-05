@@ -32,12 +32,9 @@ export default function TabPanel() {
         const connection = await attach({ id: extensionId });
         setGuestConnection(connection);
 
-        // Get the current asset from Content Hub.
-        // getCurrentAsset() returns the asset id as a plain STRING (e.g. "urn:aaid:aem:..."),
-        // NOT an object. Normalize to { id } so asset.id always works.
-        const currentAssetId = await connection.host.assetDetails.getCurrentAsset();
-        const currentAsset = typeof currentAssetId === 'string' ? { id: currentAssetId } : currentAssetId;
-        setAsset(currentAsset);
+        // getCurrentAsset() returns the asset id as a plain string (e.g. "urn:aaid:aem:...").
+        const assetId = await connection.host.assetDetails.getCurrentAsset();
+        setAsset({ id: assetId });
 
         // ── Call a web action with the asset ID ─────────────────────────────────
         // Uncomment and customize for AEM API calls:
@@ -50,7 +47,7 @@ export default function TabPanel() {
         // const response = await fetch(actionUrl, {
         //   method: 'POST',
         //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({ assetId: currentAsset.id, aemHost, apiKey, imsOrg }),
+        //   body: JSON.stringify({ assetId, aemHost, apiKey, imsOrg }),
         // });
         // const data = await response.json();
 

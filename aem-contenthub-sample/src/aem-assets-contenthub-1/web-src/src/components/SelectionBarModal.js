@@ -29,7 +29,7 @@ export default function SelectionBarModal() {
       // contentUrl was `/#selection-bar-modal?assetIds=<json>`.
       const params = new URLSearchParams(window.location.hash.split('?')[1] || '');
       const raw = params.get('assetIds');
-      setPayload({ assetIds: raw ? JSON.parse(decodeURIComponent(raw)) : [] });
+      setPayload({ assetIds: raw ? JSON.parse(raw) : [] });
 
       // attach() is only needed so the Close button can call host.modal.closeDialog().
       const connection = await attach({ id: extensionId });
